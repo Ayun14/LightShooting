@@ -66,8 +66,8 @@ public class EnemyMovement : MonoBehaviour
 
         if (collision.CompareTag("Bullet"))
         {
-            GameManager.instance.AddScore(point);
             Destroy(collision.gameObject);
+            GameManager.instance.AddScore(point);
             EnemyDie();
         }
     }

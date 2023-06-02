@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerLightBa : MonoBehaviour
 {
-    [SerializeField] float maxLight = 1;
-    private float currentLight;
+    public static float maxLight = 1f;
+    public static float currentLight;
 
     public float MaxLight => maxLight;
     public float CurrentLight => currentLight;
@@ -14,13 +14,9 @@ public class PlayerLightBa : MonoBehaviour
     {
         currentLight = 0;
     }
+
     public void TakeLightBa(float lightCude)
     {
         currentLight += lightCude;
-
-        if (currentLight >= maxLight)
-        {
-            Debug.Log("**보스 출현**");
-        }
     }
 }

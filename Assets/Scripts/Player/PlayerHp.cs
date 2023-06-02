@@ -26,9 +26,9 @@ public class PlayerHp : MonoBehaviour
         StopCoroutine(HitAnimation());
 
         if (currentHp <= 0)
-        {
             playerMovement.PlayerDie();
-        }
+        else if (currentHp >= 10)
+            currentHp = 10;
     }
 
     private IEnumerator HitAnimation()

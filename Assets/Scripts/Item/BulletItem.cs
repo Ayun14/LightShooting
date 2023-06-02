@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BulletItem : MonoBehaviour
 {
-    [SerializeField] float minY;
-    [SerializeField] float maxY;
     public GameObject bulletItem;
 
     private void Start()
@@ -14,15 +12,18 @@ public class BulletItem : MonoBehaviour
     }
     IEnumerator BulletProduce()
     {
-        float randPos = Random.Range(minY, maxY);
-        int randNum = Random.Range(0, 100);
-
-        transform.position = new Vector3(12, randPos, 0);
-
-        if (randNum < 30)
+        while (true)
         {
-            Instantiate(bulletItem, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(0.1f);
+            int randNum = Random.Range(0, 100);
+
+            if (randNum <= 1)
+            {
+                yield return new WaitForSeconds(10f);
+                GameObject BulletItem = Instantiate(bulletItem);
+                int rdIndex = Random.Range(0, transform.childCount);
+                BulletItem.transform.position = transform.GetChild(rdIndex).position;
+            }
+            yield return null;
         }
     }
 }

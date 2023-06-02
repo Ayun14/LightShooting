@@ -55,10 +55,10 @@ public class PlayerFire : MonoBehaviour
                 }
                 break;
             case 2:
-                GameObject bullet2 = Instantiate(_bullet, transform.position + Vector3.left * 0.1f, Quaternion.identity);
+                GameObject bullet2 = Instantiate(_bullet, transform.position + Vector3.left * 0.2f, Quaternion.identity);
                 bullet2.transform.parent = _bulletPar;
 
-                GameObject bullet22 = Instantiate(_bullet, transform.position + Vector3.right * 0.1f, Quaternion.identity);
+                GameObject bullet22 = Instantiate(_bullet, transform.position + Vector3.right * 0.2f, Quaternion.identity);
                 bullet22.transform.parent = _bulletPar;
 
                 if (playerMovement.isBulletColor == true)
@@ -70,20 +70,15 @@ public class PlayerFire : MonoBehaviour
             case 3:
                 GameObject bullet3 = Instantiate(_bullet, transform.position, Quaternion.identity);
                 bullet3.transform.parent = _bulletPar;
-
-                GameObject bullet33 = Instantiate(_bullet, transform.position, Quaternion.identity);
-                bullet33.transform.parent = _bulletPar;
-
-                GameObject bullet333 = Instantiate(_bullet, transform.position, Quaternion.identity);
-                bullet333.transform.parent = _bulletPar;
                 // 레이저 구현 뒤 5~10초 후 다시 attackLevel = 1로
 
                 if (playerMovement.isBulletColor == true)
                 {
                     bullet3.GetComponent<SpriteRenderer>().material = material[randomNum];
-                    bullet33.GetComponent<SpriteRenderer>().material = material[randomNum];
-                    bullet333.GetComponent<SpriteRenderer>().material = material[randomNum];
                 }
+                break;
+            default:
+                attackLevle = 1;
                 break;
         }
 

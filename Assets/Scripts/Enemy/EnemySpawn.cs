@@ -19,25 +19,38 @@ public class EnemySpawn : MonoBehaviour
     }
     IEnumerator SpawnEnemy()
     {
+        PlayerLightBa.currentLight = 0;
+
         while (true)
         {
             GameObject enemy = Instantiate(enemyPrefab);
             int rdIndex = Random.Range(0, transform.childCount);
             enemy.transform.position = transform.GetChild(rdIndex).position;
             delayTime = Random.Range(0.5f, 1f);
+
+            if (PlayerLightBa.currentLight == PlayerLightBa.maxLight)
+            {
+                StartCoroutine(SpawnBoss());
+                break;
+            }
+
             yield return new WaitForSeconds(delayTime);
         }
     }
-    /*
+
+    IEnumerator SpawnBoss()
+    {
+        yield return null;
+    }
+
     public void SetDelayTime()
     {
-        lastDelayTime = delayTime - (int)(GameManager.instance.Score * 0.001) * 0.2f;
-        Debug.Log(lastDelayTime);
+        delayTime = delayTime - (int)(GameManager.instance.Score * 0.001) * 0.2f;
+        Debug.Log(delayTime);
 
-        if (lastDelayTime <= 0.2f)
+        if (delayTime <= 0.2f)
         {
-            lastDelayTime = 0.2f;
+            delayTime = 0.2f;
         }
     }
-    */
 }

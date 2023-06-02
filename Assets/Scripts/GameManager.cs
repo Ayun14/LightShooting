@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
 
     bool isGameOver;
     int score = 0;
-    public int playerLife;
 
     public int Score
     {
