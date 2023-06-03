@@ -55,10 +55,10 @@ public class PlayerFire : MonoBehaviour
                 }
                 break;
             case 2:
-                GameObject bullet2 = Instantiate(_bullet, transform.position + Vector3.left * 0.2f, Quaternion.identity);
+                GameObject bullet2 = Instantiate(_bullet, transform.position + Vector3.up * 0.2f, Quaternion.identity);
                 bullet2.transform.parent = _bulletPar;
 
-                GameObject bullet22 = Instantiate(_bullet, transform.position + Vector3.right * 0.2f, Quaternion.identity);
+                GameObject bullet22 = Instantiate(_bullet, transform.position + Vector3.down * 0.2f, Quaternion.identity);
                 bullet22.transform.parent = _bulletPar;
 
                 if (playerMovement.isBulletColor == true)

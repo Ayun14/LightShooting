@@ -28,7 +28,7 @@ public class EnemySpawn : MonoBehaviour
             enemy.transform.position = transform.GetChild(rdIndex).position;
             delayTime = Random.Range(0.5f, 1f);
 
-            if (PlayerLightBa.currentLight == PlayerLightBa.maxLight)
+            if (PlayerLightBa.currentLight >= PlayerLightBa.maxLight)
             {
                 StartCoroutine(SpawnBoss());
                 break;

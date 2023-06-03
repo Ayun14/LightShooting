@@ -14,10 +14,14 @@ public class EnemyMovement : MonoBehaviour
     public Material[] material;
     private PlayerMovement playerMove;
     private SpriteRenderer spriteRenderer;
+    private HpItem hpItem;
+    private BulletItem bulletItem;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerMove = FindObjectOfType<PlayerMovement>();
+        hpItem = FindObjectOfType<HpItem>();
+        bulletItem = FindObjectOfType<BulletItem>();
         ColorInit();
         SetDirection();
     }
@@ -80,6 +84,8 @@ public class EnemyMovement : MonoBehaviour
             colorItem.GetComponent<Item>().randomNum = randomNum;
             Instantiate(colorItem, transform.position, Quaternion.identity);
         }
+        hpItem.HpProduce();
+        bulletItem.BulletProduce();
         Destroy(gameObject);
     }
 }

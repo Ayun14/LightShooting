@@ -6,25 +6,15 @@ public class HpItem : MonoBehaviour
 {
     public GameObject hpItem;
 
-    private void Start()
+    public void HpProduce()
     {
-        StartCoroutine(HpProduce());
-    }
+        int randNum = Random.Range(0, 100);
 
-    IEnumerator HpProduce()
-    {
-        while (true)
+        if (randNum <= 3)
         {
-            int randNum = Random.Range(0, 100);
-
-            if (randNum <= 1)
-            {
-                GameObject HpItem = Instantiate(hpItem);
-                int rdIndex = Random.Range(0, transform.childCount);
-                HpItem.transform.position = transform.GetChild(rdIndex).position;
-                yield return new WaitForSeconds(5f);
-            }
-            yield return null;
+            GameObject HpItem = Instantiate(hpItem);
+            int rdIndex = Random.Range(0, transform.childCount);
+            HpItem.transform.position = transform.GetChild(rdIndex).position;
         }
     }
 }

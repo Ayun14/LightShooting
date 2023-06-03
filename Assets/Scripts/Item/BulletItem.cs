@@ -5,25 +5,15 @@ using UnityEngine;
 public class BulletItem : MonoBehaviour
 {
     public GameObject bulletItem;
+    public void BulletProduce()
+    {
+        int randNum = Random.Range(0, 100);
 
-    private void Start()
-    {
-        StartCoroutine(BulletProduce());
-    }
-    IEnumerator BulletProduce()
-    {
-        while (true)
+        if (randNum <= 3)
         {
-            int randNum = Random.Range(0, 100);
-
-            if (randNum <= 1)
-            {
-                yield return new WaitForSeconds(10f);
-                GameObject BulletItem = Instantiate(bulletItem);
-                int rdIndex = Random.Range(0, transform.childCount);
-                BulletItem.transform.position = transform.GetChild(rdIndex).position;
-            }
-            yield return null;
+            GameObject BulletItem = Instantiate(bulletItem);
+            int rdIndex = Random.Range(0, transform.childCount);
+            BulletItem.transform.position = transform.GetChild(rdIndex).position;
         }
     }
 }
