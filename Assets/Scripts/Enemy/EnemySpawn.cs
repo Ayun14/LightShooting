@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    [SerializeField] float delayTime = 1f;
-
-    void Start()
+    [SerializeField] private float delayTime = 1f;
+    [SerializeField] private BGMController bgmController;
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject panelBossHP;
+    private void Awake()
+    {
+        boss.SetActive(false);
+        panelBossHP.SetActive(false);
+    }
+    private void Start()
     {
         StartCoroutine(SpawnEnemy());
     }
-    void Update()
+
+    private void Update()
     {
         //if (GameManager.instance.IsGameOver()) return;
         //SetDelayTime();
         //EnemySpawner();
     }
+
     IEnumerator SpawnEnemy()
     {
         PlayerLightBa.currentLight = 0;
@@ -33,24 +42,20 @@ public class EnemySpawn : MonoBehaviour
                 StartCoroutine(SpawnBoss());
                 break;
             }
-
             yield return new WaitForSeconds(delayTime);
         }
     }
 
     IEnumerator SpawnBoss()
     {
-        yield return null;
+        bgmController.ChangeBGM(BGMType.Boss);
+
+        yield return new WaitForSeconds(0.1f);
+
+        panelBossHP.SetActive(true);
+        boss.SetActive(true);
+
+        boss.GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
     }
 
-    public void SetDelayTime()
-    {
-        delayTime = delayTime - (int)(GameManager.instance.Score * 0.001) * 0.2f;
-        Debug.Log(delayTime);
-
-        if (delayTime <= 0.2f)
-        {
-            delayTime = 0.2f;
-        }
-    }
 }

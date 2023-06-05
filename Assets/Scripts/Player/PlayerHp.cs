@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHp : MonoBehaviour
 {
-    [SerializeField] float maxHp = 10;
+    [SerializeField] private float maxHp = 10;
     public float currentHp;
 
     public float MaxHp => maxHp;

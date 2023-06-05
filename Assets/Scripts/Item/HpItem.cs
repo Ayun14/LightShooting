@@ -10,7 +10,7 @@ public class HpItem : MonoBehaviour
     {
         int randNum = Random.Range(0, 100);
 
-        if (randNum <= 3)
+        if (randNum <= 1)
         {
             GameObject HpItem = Instantiate(hpItem);
             int rdIndex = Random.Range(0, transform.childCount);

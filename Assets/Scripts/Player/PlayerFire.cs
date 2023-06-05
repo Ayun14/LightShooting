@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
-    [SerializeField] float _delayTime;
+    [SerializeField] private float _delayTime;
     public Material[] material;
     public int attackLevle = 1;
     public int randomNum;
 
     public GameObject _bullet;
     public Transform _bulletPar;
-    PlayerMovement playerMovement;
+    private PlayerMovement playerMovement;
+    private Projectile projectile;
 
     public int AttckByLevel
     {
@@ -26,6 +27,7 @@ public class PlayerFire : MonoBehaviour
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        projectile = FindObjectOfType<Projectile>();
     }
 
     IEnumerator Fire()
@@ -37,6 +39,16 @@ public class PlayerFire : MonoBehaviour
                 AttackByLevel();
                 yield return new WaitForSeconds(_delayTime);
             }
+
+            if (attackLevle == 3)
+            {
+                projectile.damage += 2;
+            }
+            else if (attackLevle != 1 && attackLevle != 2 && attackLevle != 3)
+            {
+                projectile.damage -= 2;
+            }
+
             yield return null;
         }
     }
@@ -46,7 +58,7 @@ public class PlayerFire : MonoBehaviour
         switch (attackLevle)
         {
             case 1:
-                GameObject bullet = Instantiate(_bullet, transform.position, Quaternion.identity);
+                GameObject bullet = Instantiate(_bullet, transform.position + Vector3.right * 0.2f, Quaternion.identity);
                 bullet.transform.parent = _bulletPar;
 
                 if (playerMovement.isBulletColor == true)
@@ -68,7 +80,7 @@ public class PlayerFire : MonoBehaviour
                 }
                 break;
             case 3:
-                GameObject bullet3 = Instantiate(_bullet, transform.position, Quaternion.identity);
+                GameObject bullet3 = Instantiate(_bullet, transform.position + Vector3.right * 0.2f, Quaternion.identity);
                 bullet3.transform.parent = _bulletPar;
                 // 레이저 구현 뒤 5~10초 후 다시 attackLevel = 1로
 

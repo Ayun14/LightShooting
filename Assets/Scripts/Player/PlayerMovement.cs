@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
-    [SerializeField] float topX;
-    [SerializeField] float bottomX;
-    [SerializeField] float topY;
-    [SerializeField] float bottomY;
-    [SerializeField] string nextSceneName;
-    [SerializeField] float lightScore;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float topX;
+    [SerializeField] private float bottomX;
+    [SerializeField] private float topY;
+    [SerializeField] private float bottomY;
+    [SerializeField] private string nextSceneName;
+    [SerializeField] private float lightScore;
 
     float x;
     float y;
@@ -27,11 +27,11 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerFire = FindObjectOfType<PlayerFire>();
     }
-    void Update()
+    private void Update()
     {
         Move();
     }
-    void Move()
+    private void Move()
     {
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomX, topX),
             Mathf.Clamp(transform.position.y, bottomY, topY), 0);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("ColorItem"))

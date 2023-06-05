@@ -11,8 +11,8 @@ public class Item : MonoBehaviour
         hpItem
     }
 
-    [SerializeField] ItemType itemType;
-    [SerializeField] float speed;
+    [SerializeField] private ItemType itemType;
+    [SerializeField] private float speed;
     public int randomNum;
 
     public Material[] material;

@@ -5,19 +5,24 @@ using UnityEngine.UI;
 
 public class PlayerLightBaViewer : MonoBehaviour
 {
-    [SerializeField] PlayerLightBa playerLight;
+    [SerializeField] private PlayerLightBa playerLight;
 
-    Slider sliderLight;
+    private Slider sliderLight;
     private void Awake()
     {
         sliderLight = GetComponent<Slider>();
     }
-    void Update()
+    private void Update()
     {
         LightBaUpdate();
     }
-    void LightBaUpdate()
+    private void LightBaUpdate()
     {
         sliderLight.value = playerLight.CurrentLight;
+
+        if (playerLight.CurrentLight >= playerLight.MaxLight)
+        {
+            sliderLight.gameObject.SetActive(false);
+        }
     }
 }
