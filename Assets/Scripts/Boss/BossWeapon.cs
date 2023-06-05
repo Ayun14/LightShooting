@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum AttackType { CircleFire = 0, }
+using DG.Tweening;
+public enum AttackType { CircleFire = 0, HalfLaserAttack = 1, SingleFireToCenterPosition = 2,}
 
 public class BossWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject projectile;
-
+    [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private GameObject laserWarnPrefab;
+    public Transform[] laserPos;
+    private BoxCollider2D laserCollider;
+    private void Start()
+    {
+        laserCollider = laserPrefab.GetComponent<BoxCollider2D>();
+    }
     public void StartFiring(AttackType attackType)
     {
         StartCoroutine(attackType.ToString());
@@ -46,6 +53,49 @@ public class BossWeapon : MonoBehaviour
             weightAngle += 1;
 
             yield return new WaitForSeconds(attackRate);
+        }
+    }
+
+    private IEnumerator HalfLaserAttack()
+    {
+        float attackRate = 1f;
+        var random = Random.Range(0, 2);
+        
+        SpawnWarning(random);
+        yield return new WaitForSeconds(attackRate);
+        SpawnLaser(random);
+    }
+
+    void SpawnWarning(int random)
+    {
+        var warning = Instantiate(laserWarnPrefab, laserPos[random].position, Quaternion.identity, transform);
+        warning.GetComponent<SpriteRenderer>().DOFade(0, 1f);
+
+        if (warning.GetComponent<SpriteRenderer>().color.a <= 0) Destroy(warning);
+    }
+
+    void SpawnLaser(int random) 
+    {
+        var laser = Instantiate(laserPrefab, laserPos[random].position, Quaternion.identity, transform);
+        laser.transform.DOScaleY(0, 1.2f);
+
+        if (laser.transform.localScale.y <= 0) Destroy(laser);
+    }
+
+    private IEnumerator SingleFireToCenterPosition()
+    {
+        Vector3 targetPosition = Vector3.zero;
+        float attackRate = 1f;
+        float setTime = 10f;
+
+        if (setTime >= 0)
+        {
+            GameObject clone = Instantiate(projectile, transform.position, Quaternion.identity);
+            Vector3 direction = (targetPosition - clone.transform.position).normalized;
+            clone.GetComponent<Movement2D>().MoveTo(direction);
+
+            yield return new WaitForSeconds(attackRate);
+            setTime -= attackRate;
         }
     }
 }

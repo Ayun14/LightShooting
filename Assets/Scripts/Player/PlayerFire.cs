@@ -40,15 +40,6 @@ public class PlayerFire : MonoBehaviour
                 yield return new WaitForSeconds(_delayTime);
             }
 
-            if (attackLevle == 3)
-            {
-                projectile.damage += 2;
-            }
-            else if (attackLevle != 1 && attackLevle != 2 && attackLevle != 3)
-            {
-                projectile.damage -= 2;
-            }
-
             yield return null;
         }
     }

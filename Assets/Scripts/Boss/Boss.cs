@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BossState { MoveToAppearPoint = 0, Phase01, }
+public enum BossState { MoveToAppearPoint = 0, Phase01, Phase02, Phase03, }
 
 public class Boss : MonoBehaviour
 {
@@ -37,8 +37,23 @@ public class Boss : MonoBehaviour
             if (transform.position.x <= bossAppearPoint)
             {
                 transform.position = new Vector3(7, 1, 0);
-                ChangeState(BossState.Phase01);
             }
+            /*
+            int rand = Random.Range(0, 3);
+
+            switch (rand)
+            {
+                case 0:
+                    ChangeState(BossState.Phase01);
+                    break;
+                case 1:
+                    ChangeState(BossState.Phase02);
+                    break;
+                case 2:
+                    ChangeState(BossState.Phase03);
+                    break;
+            }
+            */
             yield return null;
         }
     }
@@ -46,6 +61,24 @@ public class Boss : MonoBehaviour
     private IEnumerator Phase01()
     {
         bossWeapon.StartFiring(AttackType.CircleFire);
+
+        while (true)
+        {
+            yield return null;
+        }
+    }
+    private IEnumerator Phase02()
+    {
+        bossWeapon.StartFiring(AttackType.HalfLaserAttack);
+
+        while (true)
+        {
+            yield return null;
+        }
+    }
+    private IEnumerator Phase03()
+    {
+        bossWeapon.StartFiring(AttackType.SingleFireToCenterPosition);
 
         while (true)
         {
