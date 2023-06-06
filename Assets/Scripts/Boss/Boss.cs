@@ -28,7 +28,7 @@ public class Boss : MonoBehaviour
     //
     public float bulletSpeed = 5f; // 총알 속도
     public float waveFrequency = 2f; // 물결 주기
-    public float waveAmplitude = 1f; // 물결 진폭
+    public float waveAmplitude = 10f; // 물결 진폭
 
     private void OnEnable()
     {
@@ -40,6 +40,9 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(4f);
         yield return StartCoroutine(CircleFire());
         yield return new WaitForSeconds(pattern1Delay);
+        yield return StartCoroutine(HalfLaserAttack());
+        yield return StartCoroutine(HalfLaserAttack());
+        yield return StartCoroutine(HalfLaserAttack());
         yield return StartCoroutine(HalfLaserAttack());
         yield return new WaitForSeconds(pattern2Delay);
         yield return StartCoroutine(SingleFireToCenterPosition());
@@ -165,6 +168,7 @@ public class Boss : MonoBehaviour
         SpawnWarning(random);
         yield return new WaitForSeconds(attackRate);
         SpawnLaser(random);
+        yield return new WaitForSeconds(0.2f);
     }
 
     void SpawnWarning(int random)
@@ -223,14 +227,15 @@ public class Boss : MonoBehaviour
         {
             // 물결 모양으로 총알을 발사
             float x = transform.position.x;
-            float y = Mathf.Sin(time) * waveAmplitude;
+            float y = Mathf.Cos(time) * waveAmplitude;
 
             GameObject bullet = Instantiate(projectile, new Vector3(x, y, 0f), Quaternion.identity);
             Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
             bulletRigidbody.velocity = new Vector2(-bulletSpeed, 0f);
 
             time += Time.deltaTime * waveFrequency;
-            yield return null;
+
+            yield return new WaitForSeconds(0.15f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

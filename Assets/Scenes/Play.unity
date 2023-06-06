@@ -523,7 +523,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20, y: -70}
-  m_SizeDelta: {x: 200, y: 100}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &167192012
 MonoBehaviour:
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1602,18 +1602,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossAppearPoint: 7
   bossSpeed: 3
-  patternIndex: 0
-  curPatternCount: 0
-  maxPatternCount: 0a0000000400000003000000
+  bossDamage: 3
   projectile: {fileID: 3026907787170057324, guid: f7de6e60984789d47ba4ee6cc1e3d5c8,
     type: 3}
   laserPrefab: {fileID: 7080848318729456839, guid: 3369687dfbd73a84297aeb1caea5a703,
     type: 3}
   laserWarnPrefab: {fileID: 8222215598647152509, guid: 5b4b1ffcf2604904e89ed9459aaeec82,
     type: 3}
+  patternIndex: 0
+  curPatternCount: 0
+  maxPatternCount: 0a0000000400000003000000
+  pattern1Delay: 2
+  pattern2Delay: 2
+  pattern3Delay: 2
   laserPos:
   - {fileID: 1097743951}
   - {fileID: 1280032264}
+  bulletSpeed: 5
+  waveFrequency: 2
+  waveAmplitude: 1
 --- !u!70 &822416637
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1724,15 +1731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1dfc0e08510b0040a8323efe1c1d8ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 3026907787170057324, guid: f7de6e60984789d47ba4ee6cc1e3d5c8,
-    type: 3}
-  laserPrefab: {fileID: 7080848318729456839, guid: 3369687dfbd73a84297aeb1caea5a703,
-    type: 3}
-  laserWarnPrefab: {fileID: 8222215598647152509, guid: 5b4b1ffcf2604904e89ed9459aaeec82,
-    type: 3}
-  laserPos:
-  - {fileID: 1097743951}
-  - {fileID: 1280032264}
 --- !u!114 &822416642
 MonoBehaviour:
   m_ObjectHideFlags: 0
