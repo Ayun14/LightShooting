@@ -14,6 +14,7 @@ public class EnemySpawn : MonoBehaviour
         boss.SetActive(false);
         panelBossHP.SetActive(false);
     }
+
     private void Start()
     {
         StartCoroutine(SpawnEnemy());
@@ -57,5 +58,4 @@ public class EnemySpawn : MonoBehaviour
 
         boss.GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
     }
-
 }

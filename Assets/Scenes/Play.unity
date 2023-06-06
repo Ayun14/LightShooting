@@ -1602,6 +1602,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossAppearPoint: 7
   bossSpeed: 3
+  patternIndex: 0
+  curPatternCount: 0
+  maxPatternCount: 0a0000000400000003000000
+  projectile: {fileID: 3026907787170057324, guid: f7de6e60984789d47ba4ee6cc1e3d5c8,
+    type: 3}
+  laserPrefab: {fileID: 7080848318729456839, guid: 3369687dfbd73a84297aeb1caea5a703,
+    type: 3}
+  laserWarnPrefab: {fileID: 8222215598647152509, guid: 5b4b1ffcf2604904e89ed9459aaeec82,
+    type: 3}
+  laserPos:
+  - {fileID: 1097743951}
+  - {fileID: 1280032264}
 --- !u!70 &822416637
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

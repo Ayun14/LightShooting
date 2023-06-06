@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    [SerializeField] private int damage = 1;
+    [SerializeField] private int damage = 2;
+
+    private void Update()
+    {
+        if (transform.position.x < -10)
+            Destroy(gameObject);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

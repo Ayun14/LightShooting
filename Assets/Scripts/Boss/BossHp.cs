@@ -6,6 +6,8 @@ public class BossHp : MonoBehaviour
 {
     [SerializeField] private float maxHP = 1000;
     private float currentHP;
+    private int bossPoint = 5000;
+
     private SpriteRenderer spriteRenderer;
 
     public float MaxHP => maxHP;
@@ -21,12 +23,10 @@ public class BossHp : MonoBehaviour
     {
         currentHP -= damage;
 
-        StopCoroutine(HitColorAnimation());
-        StartCoroutine(HitColorAnimation());
-
         if (currentHP <= 0)
         {
-            // »ç¸Á
+
+            GameManager.instance.AddScore(bossPoint);
         }
     }
 
