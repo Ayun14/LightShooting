@@ -39,6 +39,10 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         yield return StartCoroutine(CircleFire());
+        yield return StartCoroutine(CircleFire());
+        yield return StartCoroutine(CircleFire());
+        yield return StartCoroutine(CircleFire());
+        yield return StartCoroutine(CircleFire());
         yield return new WaitForSeconds(pattern1Delay);
         yield return StartCoroutine(HalfLaserAttack());
         yield return StartCoroutine(HalfLaserAttack());
@@ -231,7 +235,7 @@ public class Boss : MonoBehaviour
 
             GameObject bullet = Instantiate(projectile, new Vector3(x, y, 0f), Quaternion.identity);
             Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
-            bulletRigidbody.velocity = new Vector2(-bulletSpeed, 0f);
+            bulletRigidbody.velocity = new Vector2(0f, bulletSpeed); //-bulletSpeed, 0f
 
             time += Time.deltaTime * waveFrequency;
 
