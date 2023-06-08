@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
     //GameObject player;
     //PlayerMovement playerMove;
 
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(score);
         UpdateScoreText();
     }
-    void UpdateScoreText()
+    public void UpdateScoreText()
     {
         scoreText.text = "Score : " + score;
     }
