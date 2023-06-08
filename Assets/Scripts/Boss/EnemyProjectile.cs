@@ -19,5 +19,9 @@ public class EnemyProjectile : MonoBehaviour
             collision.GetComponent<PlayerHp>().TakeDamage(damage);
             Destroy(gameObject);
         }
+        else if (collision.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

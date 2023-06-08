@@ -30,6 +30,8 @@ public class Boss : MonoBehaviour
     public float waveFrequency = 2f; // 물결 주기
     public float waveAmplitude = 10f; // 물결 진폭
 
+    private float weightAngle = 0; // 가중되는 각도 (항상 같은 각도 X)
+
     private void OnEnable()
     {
         laserCollider = laserPrefab.GetComponent<BoxCollider2D>();
@@ -138,9 +140,8 @@ public class Boss : MonoBehaviour
     private IEnumerator CircleFire()
     {
         float attackRate = 0.5f; // 공격 주기
-        int count = 30; // 발사체 생성 개수
+        int count = 29; // 발사체 생성 개수
         float intervalAngle = 360 / count; // 발사체 사이의 각도
-        float weightAngle = 0; // 가중되는 각도 (항상 같은 각도 X)
 
         for (int i = 0; i < count; ++i)
         {
@@ -155,10 +156,10 @@ public class Boss : MonoBehaviour
 
             // 발사체 이동 방향 설정
             clone.GetComponent<Movement2D>().MoveTo(new Vector2(x, y));
-        }
 
-        // 발사체가 생성되는 시작 각도 설정을 위한 변수
-        weightAngle += 1;
+            // 발사체가 생성되는 시작 각도 설정을 위한 변수
+            weightAngle += 1;
+        }
 
         yield return new WaitForSeconds(attackRate);
 
@@ -172,7 +173,7 @@ public class Boss : MonoBehaviour
         SpawnWarning(random);
         yield return new WaitForSeconds(attackRate);
         SpawnLaser(random);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
     }
 
     void SpawnWarning(int random)
@@ -209,22 +210,21 @@ public class Boss : MonoBehaviour
         }
         */
 
-        /*
-        int count = 99;
+        int count = 49;
 
         while (count >= 0)
         {
             GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
 
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-            Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 10 * 3), -100);
+            Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 10 * 3), -1);
             rigid.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
             yield return new WaitForSeconds(0.15f);
             count--;
         }
         yield return null;
-        */
 
+        /*
         float time = 0f;
 
         while (time <= Mathf.PI * 2) // 360도(2pi 라디안) 회전까지 반복
@@ -241,6 +241,7 @@ public class Boss : MonoBehaviour
 
             yield return new WaitForSeconds(0.15f);
         }
+        */
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

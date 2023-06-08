@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossHp : MonoBehaviour
 {
@@ -25,8 +26,8 @@ public class BossHp : MonoBehaviour
 
         if (currentHP <= 0)
         {
-
             GameManager.instance.AddScore(bossPoint);
+            SceneManager.LoadScene("Clear");
         }
     }
 
