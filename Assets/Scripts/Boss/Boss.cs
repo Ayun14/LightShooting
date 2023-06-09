@@ -31,11 +31,19 @@ public class Boss : MonoBehaviour
     public float waveAmplitude = 10f; // 물결 진폭
 
     private float weightAngle = 0; // 가중되는 각도 (항상 같은 각도 X)
+    // 왼쪽 물결
+    [SerializeField] float dist, speed, frequency, waveHight;
+
+    Vector3 pos, localScale;
+    bool dirRight = true;
 
     private void OnEnable()
     {
         laserCollider = laserPrefab.GetComponent<BoxCollider2D>();
         bossHp = GetComponent<BossHp>();
+        // 왼쪽 물결
+        pos = projectile.transform.position;
+        localScale = projectile.transform.position;
     }
     private IEnumerator Start()
     {
@@ -194,21 +202,13 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SingleFireToCenterPosition()
     {
-        /*
-        Vector3 targetPosition = Vector3.zero;
-        float attackRate = 1f;
-        float setTime = 10f;
+        // 고치기
+        localScale.x = -1;
+        projectile.transform.transform.localScale = localScale;
+        //pos -= projectile.transform.right + Time.deltaTime * speed;
+        projectile.transform.position = pos + transform.up * Mathf.Sin(Time.time * frequency) * waveHight;
 
-        if (setTime >= 0)
-        {
-            GameObject clone = Instantiate(projectile, transform.position, Quaternion.identity);
-            Vector3 direction = (targetPosition - clone.transform.position).normalized;
-            clone.GetComponent<Movement2D>().MoveTo(direction);
-
-            yield return new WaitForSeconds(attackRate);
-            setTime -= attackRate;
-        }
-        */
+        //
 
         int count = 49;
 
