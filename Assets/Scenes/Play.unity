@@ -412,8 +412,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Boss
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2b6374bc6c27139409c4fe9a96f414ae, type: 2}
-  m_sharedMaterial: {fileID: 9167500634617512064, guid: 2b6374bc6c27139409c4fe9a96f414ae,
+  m_fontAsset: {fileID: 11400000, guid: ca3d77d9dd22f9b46a8b08cf9d273f2c, type: 2}
+  m_sharedMaterial: {fileID: 5538842703850971815, guid: ca3d77d9dd22f9b46a8b08cf9d273f2c,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -548,8 +548,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score :'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2b6374bc6c27139409c4fe9a96f414ae, type: 2}
-  m_sharedMaterial: {fileID: 9167500634617512064, guid: 2b6374bc6c27139409c4fe9a96f414ae,
+  m_fontAsset: {fileID: 11400000, guid: ca3d77d9dd22f9b46a8b08cf9d273f2c, type: 2}
+  m_sharedMaterial: {fileID: 5538842703850971815, guid: ca3d77d9dd22f9b46a8b08cf9d273f2c,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

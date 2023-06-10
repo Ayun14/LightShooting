@@ -6,7 +6,14 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     [SerializeField] private Image panelUI;
+    [SerializeField] private Image panelGameDescription;
 
+
+    private void Start()
+    {
+        panelUI.gameObject.SetActive(false);
+        panelGameDescription.gameObject.SetActive(false);
+    }
     public void SettingButtonClick()
     {
         panelUI.gameObject.SetActive(true);
@@ -17,8 +24,18 @@ public class UI : MonoBehaviour
         panelUI.gameObject.SetActive(false);
     }
 
-    public void GameExitButton()
+    public void GameExitButtonClick()
     {
         Application.Quit();
+    }
+
+    public void GameDescriptionButtonClick()
+    {
+        panelGameDescription.gameObject.SetActive(true);
+    }
+
+    public void GameDescriptionGoBackButtonClick()
+    {
+        panelGameDescription.gameObject.SetActive(true);
     }
 }
