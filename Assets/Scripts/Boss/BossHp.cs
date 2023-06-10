@@ -10,6 +10,7 @@ public class BossHp : MonoBehaviour
     private int bossPoint = 5000;
 
     private SpriteRenderer spriteRenderer;
+    private Boss boss;
 
     public float MaxHP => maxHP;
     public float CurrentHP => currentHP;
@@ -18,6 +19,7 @@ public class BossHp : MonoBehaviour
     {
         currentHP = maxHP;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boss = GetComponent<Boss>();
     }
 
     public void TakeDamage(float damage)
@@ -27,6 +29,7 @@ public class BossHp : MonoBehaviour
         if (currentHP <= 0)
         {
             GameManager.instance.AddScore(bossPoint);
+            boss.OnDie();
             SceneManager.LoadScene("Clear");
         }
     }

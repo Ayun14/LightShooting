@@ -10,9 +10,11 @@ public class Boss : MonoBehaviour
     [SerializeField] private float bossAppearPoint = 7f;
     [SerializeField] private float bossSpeed = 3f;
     [SerializeField] private float bossDamage = 3f;
+    [SerializeField] private float rushSpeed;
     [SerializeField] private GameObject projectile;
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject laserWarnPrefab;
+    [SerializeField] private GameObject explosionPrefab;
     private BossState bossState = BossState.MoveToAppearPoint;
     public int patternIndex;
     public int curPatternCount;
@@ -25,25 +27,16 @@ public class Boss : MonoBehaviour
     private BossHp bossHp;
     public Transform[] laserPos;
     private BoxCollider2D laserCollider;
-    //
-    public float bulletSpeed = 5f; // 총알 속도
-    public float waveFrequency = 2f; // 물결 주기
-    public float waveAmplitude = 10f; // 물결 진폭
+    private Transform player;
 
+    // 원 공격
     private float weightAngle = 0; // 가중되는 각도 (항상 같은 각도 X)
-    // 왼쪽 물결
-    [SerializeField] float dist, speed, frequency, waveHight;
-
-    Vector3 pos, localScale;
-    bool dirRight = true;
 
     private void OnEnable()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         laserCollider = laserPrefab.GetComponent<BoxCollider2D>();
         bossHp = GetComponent<BossHp>();
-        // 왼쪽 물결
-        pos = projectile.transform.position;
-        localScale = projectile.transform.position;
     }
     private IEnumerator Start()
     {
@@ -86,64 +79,6 @@ public class Boss : MonoBehaviour
             yield return null;
         }
     }
-    /*
-    private IEnumerator Phase01()
-    {
-        StartCoroutine(CircleFire());
-        //bossWeapon.StartFiring(AttackType.CircleFire);
-
-        while (true)
-        {
-            if (curPatternCount < maxPatternCount[patternIndex])
-                Invoke("CircleFire", 0.7f);
-            else
-                Invoke("Think", 3);
-            yield return null;
-        }
-    }
-
-    private IEnumerator Phase02()
-    {
-        StartCoroutine(HalfLaserAttack());
-        //bossWeapon.StartFiring(AttackType.HalfLaserAttack);
-
-        while (true)
-        {
-            yield return null;
-        }
-    }
-    private IEnumerator Phase03()
-    {
-        StartCoroutine(SingleFireToCenterPosition());
-        //bossWeapon.StartFiring(AttackType.SingleFireToCenterPosition);
-
-        while (true)
-        {
-            yield return null;
-        }
-    }
-
-    public void Think()
-    {
-        patternIndex = patternIndex == 3 ? 0 : patternIndex + 1;
-        curPatternCount = 0;
-
-        switch (patternIndex)
-        {
-            case 0:
-                StartCoroutine(Phase01());
-                break;
-            case 1:
-                StartCoroutine(Phase02());
-                break;
-            case 2:
-                StartCoroutine(Phase03());
-                break;
-        }
-    }
-    */
-
-    //
 
     private IEnumerator CircleFire()
     {
@@ -169,6 +104,18 @@ public class Boss : MonoBehaviour
             weightAngle += 1;
         }
 
+        // BossHP 체크
+        if (bossHp.CurrentHP <= bossHp.MaxHP * 0.7f || bossHp.CurrentHP <= bossHp.MaxHP * 0.3f)
+        {
+            StopCoroutine(Start());
+
+            StartCoroutine(BossRush());
+            yield return new WaitForSeconds(1f);
+            StopCoroutine(BossRush());
+
+            StartCoroutine(Start());
+        }
+
         yield return new WaitForSeconds(attackRate);
 
     }
@@ -181,7 +128,19 @@ public class Boss : MonoBehaviour
         SpawnWarning(random);
         yield return new WaitForSeconds(attackRate);
         SpawnLaser(random);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.08f);
+
+        //BossHP 체크
+        if (bossHp.CurrentHP <= bossHp.MaxHP * 0.7f || bossHp.CurrentHP <= bossHp.MaxHP * 0.3f)
+        {
+            StopCoroutine(Start());
+
+            StartCoroutine(BossRush());
+            yield return new WaitForSeconds(1f);
+            StopCoroutine(BossRush());
+
+            StartCoroutine(Start());
+        }
     }
 
     void SpawnWarning(int random)
@@ -202,47 +161,58 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SingleFireToCenterPosition()
     {
-        // 고치기
-        localScale.x = -1;
-        projectile.transform.transform.localScale = localScale;
-        //pos -= projectile.transform.right + Time.deltaTime * speed;
-        projectile.transform.position = pos + transform.up * Mathf.Sin(Time.time * frequency) * waveHight;
-
-        //
-
-        int count = 49;
+        int count = 69;
+        float patternCount = 1f;
 
         while (count >= 0)
         {
             GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
 
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-            Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 10 * 3), -1);
+            Vector2 dirVec = new Vector2(-1, Mathf.Cos(Mathf.PI * 10 * patternCount / 100));
             rigid.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
             yield return new WaitForSeconds(0.15f);
+            patternCount++;
             count--;
         }
         yield return null;
 
-        /*
-        float time = 0f;
-
-        while (time <= Mathf.PI * 2) // 360도(2pi 라디안) 회전까지 반복
+        // BossHP 체크
+        if (bossHp.CurrentHP <= bossHp.MaxHP * 0.7f || bossHp.CurrentHP <= bossHp.MaxHP * 0.3f)
         {
-            // 물결 모양으로 총알을 발사
-            float x = transform.position.x;
-            float y = Mathf.Cos(time) * waveAmplitude;
+            StopCoroutine(Start());
 
-            GameObject bullet = Instantiate(projectile, new Vector3(x, y, 0f), Quaternion.identity);
-            Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
-            bulletRigidbody.velocity = new Vector2(0f, bulletSpeed); //-bulletSpeed, 0f
+            StartCoroutine(BossRush());
+            yield return new WaitForSeconds(1f);
+            StopCoroutine(BossRush());
 
-            time += Time.deltaTime * waveFrequency;
-
-            yield return new WaitForSeconds(0.15f);
+            StartCoroutine(Start());
         }
-        */
     }
+
+    private IEnumerator BossRush()
+    {
+        // 플레이어가 존재하지 않으면 리턴
+        if (player == null)
+            StopCoroutine(BossRush());
+
+        // 플레이어 방향으로 보스가 돌진
+        Vector2 direction = player.position - transform.position;
+        direction.Normalize();
+        transform.Translate(direction * rushSpeed * Time.deltaTime);
+        yield return new WaitForSeconds(3f);
+        transform.position = new Vector3(10, 1, 0);
+        StartCoroutine(MoveToAppearPoint());
+
+    }
+
+    public void OnDie()
+    {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

@@ -8,8 +8,7 @@ public class EnemyProjectile : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.x < -10)
-            Destroy(gameObject);
+        Destroy(gameObject, 10f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
