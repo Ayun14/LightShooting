@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
+using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
@@ -12,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float bottomY;
     [SerializeField] private string nextSceneName;
     [SerializeField] private float lightScore;
-
+    public UnityEvent sceneChangeEvent;
     float x;
     float y;
     public bool lifeUp = false;
@@ -59,6 +58,6 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerDie()
     {
         PlayerPrefs.SetInt("Score", GameManager.instance.Score);
-        SceneManager.LoadScene(2);
+        sceneChangeEvent.Invoke();
     }
 }

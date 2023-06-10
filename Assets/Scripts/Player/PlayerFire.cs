@@ -8,8 +8,9 @@ public class PlayerFire : MonoBehaviour
     public Material[] material;
     public int attackLevle = 1;
     public int randomNum;
-
     public GameObject _bullet;
+
+    private AudioSource audioSource;
     public Transform _bulletPar;
     private PlayerMovement playerMovement;
     private Projectile projectile;
@@ -28,6 +29,7 @@ public class PlayerFire : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         projectile = FindObjectOfType<Projectile>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     IEnumerator Fire()
@@ -37,9 +39,9 @@ public class PlayerFire : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 AttackByLevel();
+                audioSource.Play();
                 yield return new WaitForSeconds(_delayTime);
             }
-
             yield return null;
         }
     }
@@ -79,9 +81,6 @@ public class PlayerFire : MonoBehaviour
 
                 GameObject bullet333 = Instantiate(_bullet, transform.position + Vector3.down * 0.4f, Quaternion.identity);
                 bullet333.transform.parent = _bulletPar;
-
-
-                // 레이저 구현 뒤 5~10초 후 다시 attackLevel = 1로
 
                 if (playerMovement.isBulletColor == true)
                 {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SoundOptions : MonoBehaviour
 {
-    public AudioMixer audioMixer;
+    public AudioSource[] audioSource;
 
     public Slider bgmSlider;
     public Slider sfxSlider;
@@ -14,11 +14,11 @@ public class SoundOptions : MonoBehaviour
     // º¼·ý Á¶Àý
     public void SetBgmVolme()
     {
-        audioMixer.SetFloat("BGM", Mathf.Log10(bgmSlider.value) * 20);
+        audioSource[0].volume = bgmSlider.value;
     }
 
     public void SetSFXVolme()
     {
-        audioMixer.SetFloat("SFX", Mathf.Log10(sfxSlider.value) * 20);
+        audioSource[1].volume = sfxSlider.value;
     }
 }

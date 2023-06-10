@@ -11,6 +11,6 @@ public class ResultScoreViewer : MonoBehaviour
     {
         textResultScore = GetComponent<TextMeshProUGUI>();
         int score = PlayerPrefs.GetInt("Score");
-        textResultScore.text = "Result Score : " + score;
+        textResultScore.text = "Score : " + score;
     }
 }

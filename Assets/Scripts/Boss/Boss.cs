@@ -118,13 +118,13 @@ public class Boss : MonoBehaviour
 
     private IEnumerator HalfLaserAttack()
     {
-        float attackRate = 1f;
+        float attackRate = 1.2f;
         var random = Random.Range(0, 2);
 
         SpawnWarning(random);
         yield return new WaitForSeconds(attackRate);
         SpawnLaser(random);
-        yield return new WaitForSeconds(0.08f);
+        yield return new WaitForSeconds(0.1f);
     }
 
     void SpawnWarning(int random)

@@ -8,39 +8,33 @@ public class PlayUI : MonoBehaviour
     [SerializeField] private GameObject gameSettingPanel;
     [SerializeField] private GameObject panelGameDescription;
 
-    private void Start()
-    {
-        gameSettingPanel.gameObject.SetActive(false);
-        panelGameDescription.gameObject.SetActive(false);
-    }
-
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameSettingPanel.activeSelf)
             {
-                Time.timeScale = 1;
-                gameSettingPanel.gameObject.SetActive(false);
+                //Time.timeScale = 1;
+                gameSettingPanel.SetActive(false);
             }
             else
             {
-                Time.timeScale = 0;
-                gameSettingPanel.gameObject.SetActive(true);
+                //Time.timeScale = 0;
+                gameSettingPanel.SetActive(true);
             }
         }
     }
 
     public void GameDescriptionButtonClick()
     {
-        gameSettingPanel.gameObject.SetActive(false);
-        panelGameDescription.gameObject.SetActive(true);
+        gameSettingPanel.SetActive(false);
+        panelGameDescription.SetActive(true);
     }
 
     public void GameDescriptionGoBackButtonClick()
     {
-        gameSettingPanel.gameObject.SetActive(true);
-        panelGameDescription.gameObject.SetActive(false);
+        gameSettingPanel.SetActive(true);
+        panelGameDescription.SetActive(false);
     }
 
     public void GameExitButtonClick()

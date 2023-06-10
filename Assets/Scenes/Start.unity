@@ -348,9 +348,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 102057487}
-        m_TargetAssemblyTypeName: ButtonEvent, Assembly-CSharp
-        m_MethodName: SceneLoader
+      - m_Target: {fileID: 1697974668}
+        m_TargetAssemblyTypeName: Michsky.LSS.LSS_Manager, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3052,7 +3052,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cb58dea8849774d95b418a3888dc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 9dd3930ef896c3945b762974329dc1a9, type: 2}
+  audioSource:
+  - {fileID: 1461150242}
+  - {fileID: 780002529}
   bgmSlider: {fileID: 49887855}
   sfxSlider: {fileID: 1934808084}
 --- !u!1 &1598257270
@@ -3257,6 +3259,97 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1697974667
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114774413241324656, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: presetName
+      value: Standard
+      objectReference: {fileID: 0}
+    - target: {fileID: 114774413241324656, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: selectedLoadingIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009415256412409282, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6773245781129861926, guid: e3347c3761db7fc4aad3e902393032b6,
+        type: 3}
+      propertyPath: m_Name
+      value: LSS Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3347c3761db7fc4aad3e902393032b6, type: 3}
+--- !u!114 &1697974668 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114774413241324656, guid: e3347c3761db7fc4aad3e902393032b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1697974667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691872b4669c9ee45847d2d10286d82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1754933822
 GameObject:
   m_ObjectHideFlags: 0

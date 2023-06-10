@@ -11,7 +11,7 @@ public class BGMController : MonoBehaviour
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = transform.GetChild(0).GetComponent<AudioSource>();
     }
 
     public void ChangeBGM(BGMType index)

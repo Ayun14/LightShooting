@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject gameSettingPanel;
+    [SerializeField] private GameObject panelGameDescription;
     //GameObject player;
     //PlayerMovement playerMove;
 
@@ -38,6 +40,25 @@ public class GameManager : MonoBehaviour
         UpdateScoreText();
         //playerMove = FindObjectOfType<PlayerMovement>();
     }
+
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameSettingPanel.activeSelf)
+            {
+                Time.timeScale = 1;
+                gameSettingPanel.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0;
+                gameSettingPanel.SetActive(true);
+            }
+        }
+    }
+
     public void AddScore(int Point)
     {
         score += Point;
@@ -47,5 +68,15 @@ public class GameManager : MonoBehaviour
     public void UpdateScoreText()
     {
         scoreText.text = "Score : " + score;
+    }
+
+    public void BackToLobbyButtonClick()
+    {
+        SceneManager.LoadScene("Start");
+    }
+
+    public void GameExitButtonClick()
+    {
+        Application.Quit();
     }
 }
