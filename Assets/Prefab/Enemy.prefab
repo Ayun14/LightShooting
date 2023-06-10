@@ -119,6 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   damage: 1
+  enemyExplosion: {fileID: 3709524316659062841, guid: f6d3b26d57007f84ea14f5ec9e2d6796,
+    type: 3}
   randomNum: 0
   colorItem: {fileID: 2644974128018391983, guid: e075a6fbdc303394f912efcaf9ac0976,
     type: 3}

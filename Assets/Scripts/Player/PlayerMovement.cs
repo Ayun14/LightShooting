@@ -27,10 +27,12 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerFire = FindObjectOfType<PlayerFire>();
     }
+
     private void Update()
     {
         Move();
     }
+
     private void Move()
     {
         x = Input.GetAxisRaw("Horizontal");

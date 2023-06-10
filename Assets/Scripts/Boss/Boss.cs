@@ -55,6 +55,18 @@ public class Boss : MonoBehaviour
         yield return StartCoroutine(SingleFireToCenterPosition());
         yield return new WaitForSeconds(pattern3Delay);
         StartCoroutine(Start()); // 패턴 반복 실행
+
+        // BossHP 체크
+        //if (bossHp.CurrentHP <= bossHp.MaxHP * 0.7f || bossHp.CurrentHP <= bossHp.MaxHP * 0.3f)
+        //{
+        //    StopCoroutine(Start());
+
+        //    StartCoroutine(BossRush());
+        //    yield return new WaitForSeconds(1f);
+        //    StopCoroutine(BossRush());
+
+        //    StartCoroutine(Start());
+        //}
     }
 
     public void ChangeState(BossState newState)
@@ -90,30 +102,14 @@ public class Boss : MonoBehaviour
         {
             GameObject clone = Instantiate(projectile, transform.position, Quaternion.identity);
 
-            // 발사체 이동 방향 (각도)
             float angle = weightAngle + intervalAngle * i;
 
-            // 발사체 이동 방향 (벡터)
             float x = Mathf.Cos(angle * Mathf.PI / 180.0f);
             float y = Mathf.Sin(angle * Mathf.PI / 180.0f);
 
-            // 발사체 이동 방향 설정
             clone.GetComponent<Movement2D>().MoveTo(new Vector2(x, y));
 
-            // 발사체가 생성되는 시작 각도 설정을 위한 변수
             weightAngle += 1;
-        }
-
-        // BossHP 체크
-        if (bossHp.CurrentHP <= bossHp.MaxHP * 0.7f || bossHp.CurrentHP <= bossHp.MaxHP * 0.3f)
-        {
-            StopCoroutine(Start());
-
-            StartCoroutine(BossRush());
-            yield return new WaitForSeconds(1f);
-            StopCoroutine(BossRush());
-
-            StartCoroutine(Start());
         }
 
         yield return new WaitForSeconds(attackRate);
@@ -129,18 +125,6 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(attackRate);
         SpawnLaser(random);
         yield return new WaitForSeconds(0.08f);
-
-        //BossHP 체크
-        if (bossHp.CurrentHP <= bossHp.MaxHP * 0.7f || bossHp.CurrentHP <= bossHp.MaxHP * 0.3f)
-        {
-            StopCoroutine(Start());
-
-            StartCoroutine(BossRush());
-            yield return new WaitForSeconds(1f);
-            StopCoroutine(BossRush());
-
-            StartCoroutine(Start());
-        }
     }
 
     void SpawnWarning(int random)
@@ -161,7 +145,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SingleFireToCenterPosition()
     {
-        int count = 69;
+        int count = 59;
         float patternCount = 1f;
 
         while (count >= 0)
@@ -176,18 +160,6 @@ public class Boss : MonoBehaviour
             count--;
         }
         yield return null;
-
-        // BossHP 체크
-        if (bossHp.CurrentHP <= bossHp.MaxHP * 0.7f || bossHp.CurrentHP <= bossHp.MaxHP * 0.3f)
-        {
-            StopCoroutine(Start());
-
-            StartCoroutine(BossRush());
-            yield return new WaitForSeconds(1f);
-            StopCoroutine(BossRush());
-
-            StartCoroutine(Start());
-        }
     }
 
     private IEnumerator BossRush()
@@ -197,11 +169,13 @@ public class Boss : MonoBehaviour
             StopCoroutine(BossRush());
 
         // 플레이어 방향으로 보스가 돌진
-        Vector2 direction = player.position - transform.position;
-        direction.Normalize();
-        transform.Translate(direction * rushSpeed * Time.deltaTime);
-        yield return new WaitForSeconds(3f);
+        if (transform.position.x > -10)
+        {
+            Vector2 direction = player.position - transform.position;
+            transform.Translate(direction * rushSpeed * Time.deltaTime);
+        }
         transform.position = new Vector3(10, 1, 0);
+        yield return new WaitForSeconds(2f);
         StartCoroutine(MoveToAppearPoint());
 
     }

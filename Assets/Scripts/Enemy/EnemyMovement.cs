@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
-    [SerializeField] int damage = 1;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private int damage = 1;
     private int point = 50;
     public int randomNum;
 
@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private HpItem hpItem;
     private BulletItem bulletItem;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
