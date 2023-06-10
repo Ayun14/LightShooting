@@ -145,7 +145,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SingleFireToCenterPosition()
     {
-        int count = 59;
+        int count = 49;
         float patternCount = 1f;
 
         while (count >= 0)
