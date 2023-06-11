@@ -60,4 +60,6 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("Score", GameManager.instance.Score);
         sceneChangeEvent.Invoke();
     }
+
+
 }
