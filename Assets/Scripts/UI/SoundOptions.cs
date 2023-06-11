@@ -21,4 +21,9 @@ public class SoundOptions : MonoBehaviour
     {
         audioSource[1].volume = sfxSlider.value;
     }
+
+    public void PlaySFX()
+    {
+        audioSource[1].Play();
+    }
 }

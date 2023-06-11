@@ -14,6 +14,7 @@ public class PlayerFire : MonoBehaviour
     public Transform _bulletPar;
     private PlayerMovement playerMovement;
     private Projectile projectile;
+    private SoundOptions soundOptions;
 
     public int AttckByLevel
     {
@@ -30,6 +31,7 @@ public class PlayerFire : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         projectile = FindObjectOfType<Projectile>();
         audioSource = GetComponent<AudioSource>();
+        soundOptions = FindObjectOfType<SoundOptions>();
     }
 
     IEnumerator Fire()
@@ -39,7 +41,8 @@ public class PlayerFire : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 AttackByLevel();
-                audioSource.Play();
+                soundOptions.PlaySFX();
+                //audioSource.Play();
                 yield return new WaitForSeconds(_delayTime);
             }
             yield return null;
