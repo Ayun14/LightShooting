@@ -16,7 +16,7 @@ public class BulletItem : MonoBehaviour
     {
         int randNum = Random.Range(0, 100);
 
-        if (randNum <= 1)
+        if (randNum <= 1 && playerFire.attackLevle <= 3)
         {
             GameObject BulletItem = Instantiate(bulletItem);
             int rdIndex = Random.Range(0, transform.childCount);

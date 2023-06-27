@@ -93,7 +93,21 @@ public class PlayerFire : MonoBehaviour
                 }
                 break;
             default:
-                attackLevle = 3;
+                GameObject bullet4 = Instantiate(_bullet, transform.position, Quaternion.identity);
+                bullet4.transform.parent = _bulletPar;
+
+                GameObject bullet44 = Instantiate(_bullet, transform.position + Vector3.up * 0.4f, Quaternion.identity);
+                bullet44.transform.parent = _bulletPar;
+
+                GameObject bullet444 = Instantiate(_bullet, transform.position + Vector3.down * 0.4f, Quaternion.identity);
+                bullet444.transform.parent = _bulletPar;
+
+                if (playerMovement.isBulletColor == true)
+                {
+                    bullet4.GetComponent<SpriteRenderer>().material = material[randomNum];
+                    bullet44.GetComponent<SpriteRenderer>().material = material[randomNum];
+                    bullet444.GetComponent<SpriteRenderer>().material = material[randomNum];
+                }
                 break;
         }
 
