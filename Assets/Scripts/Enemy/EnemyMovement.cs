@@ -26,11 +26,13 @@ public class EnemyMovement : MonoBehaviour
         ColorInit();
         SetDirection();
     }
+
     void ColorInit()
     {
         randomNum = Random.Range(0, 4);
         spriteRenderer.material = material[randomNum];
     }
+
     void SetDirection()
     {
         int rd = Random.Range(0, 100);
@@ -47,6 +49,7 @@ public class EnemyMovement : MonoBehaviour
             transform.position += direction * 4 /* moveSpeed*/ * Time.deltaTime;
         }
     }
+
     void Update()
     {
         EnemyMove();
