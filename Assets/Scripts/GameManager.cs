@@ -12,10 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject gameSettingPanel;
     [SerializeField] private GameObject panelGameDescription;
-    //GameObject player;
-    //PlayerMovement playerMove;
-
-    bool isGameOver;
+    
     int score = 0;
 
     public int Score
