@@ -54,19 +54,7 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(pattern2Delay);
         yield return StartCoroutine(SingleFireToCenterPosition());
         yield return new WaitForSeconds(pattern3Delay);
-        StartCoroutine(Start()); // 패턴 반복 실행
-
-        // BossHP 체크
-        //if (bossHp.CurrentHP <= bossHp.MaxHP * 0.7f || bossHp.CurrentHP <= bossHp.MaxHP * 0.3f)
-        //{
-        //    StopCoroutine(Start());
-
-        //    StartCoroutine(BossRush());
-        //    yield return new WaitForSeconds(1f);
-        //    StopCoroutine(BossRush());
-
-        //    StartCoroutine(Start());
-        //}
+        StartCoroutine(Start());
     }
 
     public void ChangeState(BossState newState)
@@ -86,7 +74,7 @@ public class Boss : MonoBehaviour
 
             if (transform.position.x <= bossAppearPoint)
             {
-                transform.position = new Vector3(7, 1, 0);
+                transform.position = new Vector3(6.5f, 1, 0);
             }
             yield return null;
         }
