@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum BGMType { Stage = 0, Boss}
+public enum BGMType { Stage = 0, Boss }
 
 public class BGMController : MonoBehaviour
 {

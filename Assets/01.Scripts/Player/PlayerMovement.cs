@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,11 +18,13 @@ public class PlayerMovement : MonoBehaviour
     public Material[] material;
     private SpriteRenderer spriteRenderer;
     private PlayerFire playerFire;
+    private PlayerLightBa _playerLightBa;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerFire = FindObjectOfType<PlayerFire>();
+        _playerLightBa = GetComponent<PlayerLightBa>();
     }
 
     private void Update()
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             playerFire.randomNum = collision.GetComponent<Item>().randomNum;
             isBulletColor = true;
 
-            GetComponent<PlayerLightBa>().TakeLightBa(lightScore);
+            _playerLightBa.TakeLightBa(lightScore);
         }
     }
     public void PlayerDie()
@@ -60,6 +60,4 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("Score", GameManager.instance.Score);
         sceneChangeEvent.Invoke();
     }
-
-
 }
