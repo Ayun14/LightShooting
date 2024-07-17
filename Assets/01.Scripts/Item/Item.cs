@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
 
     [SerializeField] private ItemType itemType;
     [SerializeField] private float speed;
-    public int randomNum;
+    public int colorNum;
 
     public Material[] material;
     private PlayerFire playerFire;

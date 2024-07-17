@@ -41,12 +41,12 @@ public class EnemyMovement : MonoBehaviour
         {
             direction = playerMove.transform.position - transform.position;
             direction = direction.normalized;
-            transform.position += direction * 7 /* moveSpeed*/ * Time.deltaTime;
+            transform.position += direction * 7 * Time.deltaTime;
         }
         else
         {
             direction = Vector3.left;
-            transform.position += direction * 4 /* moveSpeed*/ * Time.deltaTime;
+            transform.position += direction * 4 * Time.deltaTime;
         }
     }
 
@@ -85,7 +85,7 @@ public class EnemyMovement : MonoBehaviour
         if (rand < 25)
         {
             colorItem.GetComponent<SpriteRenderer>().material = material[randomNum];
-            colorItem.GetComponent<Item>().randomNum = randomNum;
+            colorItem.GetComponent<Item>().colorNum = randomNum;
             Instantiate(colorItem, transform.position, Quaternion.identity);
         }
         hpItem.HpProduce();

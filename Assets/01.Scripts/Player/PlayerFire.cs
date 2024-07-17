@@ -7,7 +7,7 @@ public class PlayerFire : MonoBehaviour
     [SerializeField] private float _delayTime;
     public Material[] material;
     public int attackLevle = 1;
-    public int randomNum;
+    public int colorNum;
     public GameObject _bullet;
 
     private AudioSource audioSource;
@@ -59,7 +59,7 @@ public class PlayerFire : MonoBehaviour
 
                 if (playerMovement.isBulletColor == true)
                 {
-                    bullet.GetComponent<SpriteRenderer>().material = material[randomNum];
+                    bullet.GetComponent<SpriteRenderer>().material = material[colorNum];
                 }
                 break;
             case 2:
@@ -71,8 +71,8 @@ public class PlayerFire : MonoBehaviour
 
                 if (playerMovement.isBulletColor == true)
                 {
-                    bullet2.GetComponent<SpriteRenderer>().material = material[randomNum];
-                    bullet22.GetComponent<SpriteRenderer>().material = material[randomNum];
+                    bullet2.GetComponent<SpriteRenderer>().material = material[colorNum];
+                    bullet22.GetComponent<SpriteRenderer>().material = material[colorNum];
                 }
                 break;
             case 3:
@@ -87,9 +87,9 @@ public class PlayerFire : MonoBehaviour
 
                 if (playerMovement.isBulletColor == true)
                 {
-                    bullet3.GetComponent<SpriteRenderer>().material = material[randomNum];
-                    bullet33.GetComponent<SpriteRenderer>().material = material[randomNum];
-                    bullet333.GetComponent<SpriteRenderer>().material = material[randomNum];
+                    bullet3.GetComponent<SpriteRenderer>().material = material[colorNum];
+                    bullet33.GetComponent<SpriteRenderer>().material = material[colorNum];
+                    bullet333.GetComponent<SpriteRenderer>().material = material[colorNum];
                 }
                 break;
             default:
@@ -104,9 +104,9 @@ public class PlayerFire : MonoBehaviour
 
                 if (playerMovement.isBulletColor == true)
                 {
-                    bullet4.GetComponent<SpriteRenderer>().material = material[randomNum];
-                    bullet44.GetComponent<SpriteRenderer>().material = material[randomNum];
-                    bullet444.GetComponent<SpriteRenderer>().material = material[randomNum];
+                    bullet4.GetComponent<SpriteRenderer>().material = material[colorNum];
+                    bullet44.GetComponent<SpriteRenderer>().material = material[colorNum];
+                    bullet444.GetComponent<SpriteRenderer>().material = material[colorNum];
                 }
                 break;
         }

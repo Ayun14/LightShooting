@@ -48,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("ColorItem"))
         {
             Destroy(collision.gameObject);
-            spriteRenderer.material = material[collision.GetComponent<Item>().randomNum];
-            playerFire.randomNum = collision.GetComponent<Item>().randomNum;
+            spriteRenderer.material = material[collision.GetComponent<Item>().colorNum];
+            playerFire.colorNum = collision.GetComponent<Item>().colorNum;
             isBulletColor = true;
 
             _playerLightBa.TakeLightBa(lightScore);

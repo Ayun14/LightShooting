@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateScoreText();
-        //playerMove = FindObjectOfType<PlayerMovement>();
     }
 
     private void Update()
